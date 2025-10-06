@@ -1,14 +1,19 @@
 package org.example.console;
 
-import org.example.DB;
-import org.example.models.Music;
+import org.example.controllers.AnimalController;
+import org.example.controllers.MusicController;
+import org.example.controllers.PeopleController;
+import org.example.services.InputService;
 
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class Console {
-    private static Scanner sc = new Scanner(System.in);
-    public static void start() {
+    private final InputService inputService;
+    private final AnimalController animalController;
+    private final MusicController musicController;
+    private final PeopleController peopleController;
+
+
+    public void start() {
         while (true) {
             System.out.println("\nВыберите один из вариантов:\n" +
                     "\"-c\" (create)                            -b(назад)\n" +
@@ -16,7 +21,7 @@ public class Console {
                     "\"-u\" (update)\n" +
                     "\"-d\" (delete)\n"
             );
-            char c = parse(sc.nextLine());
+            char c = inputService.parseArg();
             if (c == '0') {
                 continue;
             }
@@ -34,35 +39,83 @@ public class Console {
             }
         }
     }
-    private static char parse(String str) {
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '-' && (i + 1) < str.length()) {
-                return str.charAt((i + 1));
-            }
+
+    private void read() {
+        chooseModel();
+        int id = inputService.readInt("");
+        if (id == 1) {
+            animalController.getAll();
         }
-        return str.charAt(0);
-    }
-    private static void read() {
-        System.out.println("Все значения в БД:");
-        System.out.println(DB.getDB());
-    }
-    private static void delete() {
-        System.out.println("Элемент под каким номером удалить?");
-    }
-    private static void create() {
-        System.out.println("Выберите обьект, который хотит создать:\n" +
-                "1) Music");
-        char c = parse(sc.nextLine());
-        if (c == '1') {
-            System.out.println("Введите название песни, исполнителя и длительность");
-            String[] arg = sc.nextLine().split(" ");
-            System.out.println(Arrays.toString(arg));
-            if (arg.length == 3) {
-                DB.save(new Music(arg[0], arg[1], Integer.parseInt(arg[2])));
-                System.out.println("Запись добавлена");
-            }
+        else if (id == 2) {
+            musicController.getAll();
+        }
+        else if (id == 3) {
+            peopleController.getAll();
+        }
+        else {
+            System.out.println("❌ НЕТ ТАКОГО ВАРИАНТА");
         }
     }
-    private static void update() {
+    private void delete() {
+        chooseModel();
+        int id = inputService.readInt("");
+        if (id == 1) {
+            animalController.delete();
+        }
+        else if (id == 2) {
+            musicController.delete();
+        }
+        else if (id == 3) {
+            peopleController.delete();
+        }
+        else {
+            System.out.println("❌ НЕТ ТАКОГО ВАРИАНТА");
+        }
+    }
+    private void create() {
+        chooseModel();
+        int id = inputService.readInt("");
+        if (id == 1) {
+            animalController.create();
+        }
+        else if (id == 2) {
+            musicController.create();
+        }
+        else if (id == 3) {
+            peopleController.create();
+        }
+        else {
+            System.out.println("❌ НЕТ ТАКОГО ВАРИАНТА");
+        }
+    }
+    private void update() {
+        chooseModel();
+        int id = inputService.readInt("");
+        if (id == 1) {
+            animalController.update();
+        }
+        else if (id == 2) {
+            musicController.update();
+        }
+        else if (id == 3) {
+            peopleController.update();
+        }
+        else {
+            System.out.println("❌ НЕТ ТАКОГО ВАРИАНТА");
+        }
+    }
+    private void chooseModel() {
+        System.out.println("\nВыберите один из вариантов:\n" +
+                "1 (Animal)\n" +
+                "2 (Music)\n" +
+                "3 (People)\n"
+        );
+    }
+
+    public Console(InputService inputService, AnimalController animalController, MusicController musicController, PeopleController peopleController) {
+        this.inputService = inputService;
+        this.animalController = animalController;
+        this.musicController = musicController;
+        this.peopleController = peopleController;
     }
 }

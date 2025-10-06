@@ -1,6 +1,7 @@
 package org.example.models;
 
 public class People implements IModel {
+    private int ID;
     private String firstName;
     private String lastName;
     private int age;
@@ -30,6 +31,25 @@ public class People implements IModel {
         return lastName;
     }
 
+    @Override
+    public String toString() {
+        return "People{" +
+                "ID=" + ID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", citizenship='" + citizenship + '\'' +
+                '}';
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
     public int getAge() {
         return age;
     }
@@ -38,7 +58,8 @@ public class People implements IModel {
         return citizenship;
     }
 
-    public People(String firstName, String lastName, int age, String citizenship) {
+    public People(int ID, String firstName, String lastName, int age, String citizenship) {
+        this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
