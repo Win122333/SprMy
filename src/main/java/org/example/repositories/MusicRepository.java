@@ -11,9 +11,7 @@ public class MusicRepository implements IRepository<Music> {
 
     @Override
     public void save(Music entity) {
-        if (entity.getID() == 0) {
-            entity.setID(ID++);
-        }
+        entity.setID(ID++);
         db.add(entity);
     }
 
@@ -56,10 +54,10 @@ public class MusicRepository implements IRepository<Music> {
 
     public MusicRepository() {
         db = new ArrayList<>();
-        save(new Music(0, "Слава кпсс", "Слава кпсс", 180));
-        save(new Music(0, "Шёлк", "Ваня Дмитриенко", 200));
-        save(new Music(0, "Бассейн", "Noize MC", 210));
-        save(new Music(0, "На луне", "Серега Пират", 170));
-        save(new Music(0, "3 6 9", "FORTUNA 812", 150));
+        save(new Music("Слава кпсс", "Слава кпсс", 180));
+        save(new Music("Шёлк", "Ваня Дмитриенко", 200));
+        save(new Music("Бассейн", "Noize MC", 210));
+        save(new Music("На луне", "Серега Пират", 170));
+        save(new Music("3 6 9", "FORTUNA 812", 150));
     }
 }

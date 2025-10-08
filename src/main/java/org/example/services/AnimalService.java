@@ -31,9 +31,6 @@ public class AnimalService implements IService<Animal> {
 
     @Override
     public void create(Animal entity) {
-        if (entity.getID() < 0) {
-            entity.setID(0);
-        }
         animalRepository.save(entity);
     }
 

@@ -58,7 +58,7 @@ public class People implements IModel {
         return citizenship;
     }
 
-    public People(int ID, String firstName, String lastName, int age, String citizenship) {
+    public People(String firstName, String lastName, int age, String citizenship) {
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -18,7 +18,7 @@ public class AnimalController implements IController {
             long population = inputService.readLong("Введите число особей");
             int avgLife = inputService.readInt("Введите среднее время жизни");
 
-            Animal animal = new Animal(0, scienceName, population, avgLife);
+            Animal animal = new Animal(scienceName, population, avgLife);
             animalService.create(animal);
 
             System.out.println("✅ Животное успешно создано!");
@@ -65,7 +65,7 @@ public class AnimalController implements IController {
             long population = inputService.readLong("Введите число особей");
             int avgLife = inputService.readInt("Введите среднее время жизни");
 
-            Animal animal = new Animal(0, scienceName, population, avgLife);
+            Animal animal = new Animal(scienceName, population, avgLife);
             animalService.update(animal, ID);
         }
         catch (Exception e) {

@@ -42,15 +42,34 @@ public class Console {
 
     private void read() {
         chooseModel();
-        int id = inputService.readInt("");
-        if (id == 1) {
-            animalController.getAll();
+        int idEntity = inputService.readInt("");
+        int idChoose = inputService.readInt("ВЫБЕРИТЕ ВАРИАНТ:\n" +
+                "1 (ВЫВЕСТИ ВСЁ)\n" +
+                "2 (ВЫВЕСТИ ПО ID)");
+
+        if (idEntity == 1) {
+            if (idChoose == 1) {
+                animalController.getAll();
+            }
+            else if (idChoose == 2) {
+                animalController.getItemById();
+            }
         }
-        else if (id == 2) {
-            musicController.getAll();
+        else if (idEntity == 2) {
+            if (idChoose == 1) {
+                musicController.getAll();
+            }
+            else if (idChoose == 2) {
+                musicController.getItemById();
+            }
         }
-        else if (id == 3) {
-            peopleController.getAll();
+        else if (idEntity == 3) {
+            if (idChoose == 1) {
+                peopleController.getAll();
+            }
+            else if (idChoose == 2) {
+                peopleController.getItemById();
+            }
         }
         else {
             System.out.println("❌ НЕТ ТАКОГО ВАРИАНТА");

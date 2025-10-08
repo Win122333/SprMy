@@ -5,7 +5,7 @@ public class Music implements IModel {
     private String title;
     private String autor;
     private int duration;
-    public Music(int ID, String title, String autor, int duration) {
+    public Music(String title, String autor, int duration) {
         this.ID = ID;
         this.title = title;
         this.autor = autor;

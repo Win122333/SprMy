@@ -16,7 +16,7 @@ public class MusicController implements IController {
         String title = inputService.readString("ВВЕДИ НАЗВАНИЕ");
         String autor = inputService.readString("ВВЕДИ АВТОРА");
         int duratrion = inputService.readInt("ВВЕДИ ДЛИТЕЛЬНОСТЬ");
-        Music music = new Music(0, title, autor, duratrion);
+        Music music = new Music(title, autor, duratrion);
 
         musicService.create(music);
     }
@@ -30,7 +30,7 @@ public class MusicController implements IController {
 
     @Override
     public void getItemById() {
-        musicService.getItemById(inputService.readInt("ВВЕДИ ID"));
+        System.out.println(musicService.getItemById(inputService.readInt("ВВЕДИ ID")));
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MusicController implements IController {
             String autor = inputService.readString("Введите автора");
             int duration = inputService.readInt("Введите длительность");
 
-            Music music = new Music(ID, title, autor, duration);
+            Music music = new Music(title, autor, duration);
             musicService.update(music, ID);
         }
         catch (Exception e) {

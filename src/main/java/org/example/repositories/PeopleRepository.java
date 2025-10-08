@@ -59,10 +59,10 @@ public class PeopleRepository implements IRepository<People> {
 
     public PeopleRepository() {
         db = new ArrayList<>();
-        save(new People(0, "RTRTR", "dfdfdf", 111, "RUS"));
-        save(new People(0, "oooo", "yyyy", 112, "RUS"));
-        save(new People(0, "iiiii", "uuuu", 113, "RUS"));
-        save(new People(0, "uuuuu", "tttt", 114, "RUS"));
-        save(new People(0, "yyyyy", "oooo", 115, "RUS"));
+        save(new People("RTRTR", "dfdfdf", 111, "RUS"));
+        save(new People("oooo", "yyyy", 112, "RUS"));
+        save(new People("iiiii", "uuuu", 113, "RUS"));
+        save(new People("uuuuu", "tttt", 114, "RUS"));
+        save(new People("yyyyy", "oooo", 115, "RUS"));
     }
 }

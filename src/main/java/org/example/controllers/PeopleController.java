@@ -18,7 +18,7 @@ public class PeopleController implements IController {
             int age = inputService.readInt("Введите возраст");
             String citizenship = inputService.readString("Введите гражданство");
 
-            People people = new People(0, firstName, lastName, age, citizenship);
+            People people = new People(firstName, lastName, age, citizenship);
             peopleService.create(people);
 
             System.out.println("✅ Человек успешно создано!");
@@ -38,7 +38,7 @@ public class PeopleController implements IController {
 
     @Override
     public void getItemById() {
-        peopleService.getItemById(inputService.readInt("ВВЕДИ ID"));
+        System.out.println(peopleService.getItemById(inputService.readInt("ВВЕДИ ID")));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class PeopleController implements IController {
             String citizenship = inputService.readString("Введите гражданство");
 
 
-            People people = new People(ID, firstName, lastName, age, citizenship);
+            People people = new People(firstName, lastName, age, citizenship);
             peopleService.update(people, ID);
         }
         catch (Exception e) {

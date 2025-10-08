@@ -10,9 +10,7 @@ public class AnimalRepository implements IRepository<Animal> {
     private int ID;
 
     public void save(Animal entity) {
-        if (entity.getID() == 0) {
-            entity.setID(ID++);
-        }
+        entity.setID(ID++);
         db.add(entity);
     }
 
@@ -56,10 +54,10 @@ public class AnimalRepository implements IRepository<Animal> {
     public AnimalRepository() {
         this.db = new ArrayList<>();
         ID = 1;
-        save(new Animal(0,"Попугай", 322535, 50));
-        save(new Animal(0, "Тигр", 214124, 40));
-        save(new Animal(0,"Черепаха", 1111111111, 200));
-        save(new Animal(0,"Мухоловка", 1224142141, 2));
-        save(new Animal(0,"Лобстер", 35235, 10));
+        save(new Animal("Попугай", 322535, 50));
+        save(new Animal( "Тигр", 214124, 40));
+        save(new Animal("Черепаха", 1111111111, 200));
+        save(new Animal("Мухоловка", 1224142141, 2));
+        save(new Animal("Лобстер", 35235, 10));
     }
 }

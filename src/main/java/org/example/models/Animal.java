@@ -38,8 +38,7 @@ public class Animal implements IModel {
         return avgLife;
     }
 
-    public Animal(int ID, String scienceName, long population, int avgLife) {
-        this.ID = ID;
+    public Animal(String scienceName, long population, int avgLife) {
         this.scienceName = scienceName;
         this.population = population;
         this.avgLife = avgLife;
