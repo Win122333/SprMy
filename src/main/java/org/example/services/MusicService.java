@@ -1,12 +1,13 @@
 package org.example.services;
 
 import org.example.models.Music;
-import org.example.repositories.MusicRepository;
+import org.example.repositories.IRepository;
+import org.example.repositories.MusicRepositoryJDBC;
 
 import java.util.List;
 
 public class MusicService implements IService<Music> {
-    private final MusicRepository musicRepository;
+    private final IRepository<Music> musicRepository;
 
     @Override
     public List<Music> getAll() {
@@ -33,7 +34,7 @@ public class MusicService implements IService<Music> {
         musicRepository.save(entity);
     }
 
-    public MusicService(MusicRepository musicRepository) {
+    public MusicService(IRepository<Music> musicRepository) {
         this.musicRepository = musicRepository;
     }
 }

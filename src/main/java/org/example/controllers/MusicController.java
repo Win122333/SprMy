@@ -16,7 +16,8 @@ public class MusicController implements IController {
         String title = inputService.readString("ВВЕДИ НАЗВАНИЕ");
         String autor = inputService.readString("ВВЕДИ АВТОРА");
         int duratrion = inputService.readInt("ВВЕДИ ДЛИТЕЛЬНОСТЬ");
-        Music music = new Music(title, autor, duratrion);
+        int ID_owner = inputService.readInt("Введите id создателя мелодии");
+        Music music = new Music(title, autor, duratrion, ID_owner);
 
         musicService.create(music);
     }
@@ -52,8 +53,9 @@ public class MusicController implements IController {
             String title = inputService.readString("Введите его название");
             String autor = inputService.readString("Введите автора");
             int duration = inputService.readInt("Введите длительность");
+            int ID_owner = inputService.readInt("Введите id создатели музыки");
 
-            Music music = new Music(title, autor, duration);
+            Music music = new Music(title, autor, duration, ID_owner);
             musicService.update(music, ID);
         }
         catch (Exception e) {

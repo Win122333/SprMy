@@ -1,12 +1,14 @@
 package org.example.services;
 
 import org.example.models.People;
+import org.example.repositories.IRepository;
 import org.example.repositories.PeopleRepository;
+import org.example.repositories.PeopleRepositoryJDBC;
 
 import java.util.List;
 
 public class PeopleService implements IService<People> {
-    PeopleRepository peopleRepository;
+    IRepository<People> peopleRepository;
 
     @Override
     public List<People> getAll() {
@@ -33,7 +35,7 @@ public class PeopleService implements IService<People> {
         peopleRepository.save(entity);
     }
 
-    public PeopleService(PeopleRepository peopleRepository) {
+    public PeopleService(IRepository<People> peopleRepository) {
         this.peopleRepository = peopleRepository;
     }
 }

@@ -2,12 +2,13 @@ package org.example.controllers;
 
 import org.example.models.Animal;
 import org.example.services.AnimalService;
+import org.example.services.IService;
 import org.example.services.InputService;
 
 
 public class AnimalController implements IController {
     private final InputService inputService;
-    private final AnimalService animalService;
+    private final IService<Animal> animalService;
 
     @Override
     public void create() {
@@ -17,8 +18,9 @@ public class AnimalController implements IController {
             String scienceName = inputService.readString("Введите его научное название");
             long population = inputService.readLong("Введите число особей");
             int avgLife = inputService.readInt("Введите среднее время жизни");
+            int ID_owner = inputService.readInt("Введите id хозяина");
 
-            Animal animal = new Animal(scienceName, population, avgLife);
+            Animal animal = new Animal(scienceName, population, avgLife, ID_owner);
             animalService.create(animal);
 
             System.out.println("✅ Животное успешно создано!");
@@ -64,8 +66,9 @@ public class AnimalController implements IController {
             String scienceName = inputService.readString("Введите его научное название");
             long population = inputService.readLong("Введите число особей");
             int avgLife = inputService.readInt("Введите среднее время жизни");
+            int ID_owner = inputService.readInt("Введите id владельца");
 
-            Animal animal = new Animal(scienceName, population, avgLife);
+            Animal animal = new Animal(scienceName, population, avgLife, ID_owner);
             animalService.update(animal, ID);
         }
         catch (Exception e) {

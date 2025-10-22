@@ -2,8 +2,8 @@ package org.example.repositories;
 
 import org.example.models.Animal;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class AnimalRepository implements IRepository<Animal> {
     private List<Animal> db;
@@ -54,10 +54,10 @@ public class AnimalRepository implements IRepository<Animal> {
     public AnimalRepository() {
         this.db = new ArrayList<>();
         ID = 1;
-        save(new Animal("Попугай", 322535, 50));
-        save(new Animal( "Тигр", 214124, 40));
-        save(new Animal("Черепаха", 1111111111, 200));
-        save(new Animal("Мухоловка", 1224142141, 2));
-        save(new Animal("Лобстер", 35235, 10));
+        save(new Animal("Попугай", 322535, 50, 5));
+        save(new Animal( "Тигр", 214124, 40, 5));
+        save(new Animal("Черепаха", 1111111111, 200, 3));
+        save(new Animal("Мухоловка", 1224142141, 2, 1));
+        save(new Animal("Лобстер", 35235, 10, 4));
     }
 }

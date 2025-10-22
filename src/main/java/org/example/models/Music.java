@@ -2,14 +2,23 @@ package org.example.models;
 
 public class Music implements IModel {
     private int ID;
+    private int ID_owner;
     private String title;
     private String autor;
     private int duration;
-    public Music(String title, String autor, int duration) {
-        this.ID = ID;
+    public Music(String title, String autor, int duration, int ID_owner) {
+        this.ID_owner = ID_owner;
         this.title = title;
         this.autor = autor;
         this.duration = duration;
+    }
+
+    public void setID_owner(int ID_owner) {
+        this.ID_owner = ID_owner;
+    }
+
+    public int getID_owner() {
+        return ID_owner;
     }
 
     public int getDuration() {
@@ -46,9 +55,12 @@ public class Music implements IModel {
 
     @Override
     public String toString() {
-        return
-                "title='" + title + '\'' +
+        return "Music{" +
+                "ID=" + ID +
+                ", ID_owner=" + ID_owner +
+                ", title='" + title + '\'' +
                 ", autor='" + autor + '\'' +
-                ", duration=" + duration;
+                ", duration=" + duration +
+                '}';
     }
 }

@@ -13,8 +13,8 @@ public class PeopleController implements IController {
         try {
             System.out.println("Начнём создание нашего человека!");
 
-            String firstName = inputService.readString("Введите его научное имя");
-            String lastName = inputService.readString("Введите его научное фамилию");
+            String firstName = inputService.readString("Введите его имя");
+            String lastName = inputService.readString("Введите его фамилию");
             int age = inputService.readInt("Введите возраст");
             String citizenship = inputService.readString("Введите гражданство");
 
@@ -57,8 +57,8 @@ public class PeopleController implements IController {
     public void update() {
         try {
             int ID = inputService.readInt("Введите id элемента, который хотите заменить");
-            String firstName = inputService.readString("Введите его научное имя");
-            String lastName = inputService.readString("Введите его научное фамилию");
+            String firstName = inputService.readString("Введите его имя");
+            String lastName = inputService.readString("Введите его фамилию");
             int age = inputService.readInt("Введите возраст");
             String citizenship = inputService.readString("Введите гражданство");
 

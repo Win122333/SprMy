@@ -2,11 +2,13 @@ package org.example.services;
 
 import org.example.models.Animal;
 import org.example.repositories.AnimalRepository;
+import org.example.repositories.AnimalRepositoryJDBC;
+import org.example.repositories.IRepository;
 
 import java.util.List;
 
 public class AnimalService implements IService<Animal> {
-    private AnimalRepository animalRepository;
+    private IRepository<Animal> animalRepository;
 
     @Override
     public List<Animal> getAll() {
@@ -34,7 +36,7 @@ public class AnimalService implements IService<Animal> {
         animalRepository.save(entity);
     }
 
-    public AnimalService(AnimalRepository animalRepository) {
+    public AnimalService(IRepository<Animal> animalRepository) {
         this.animalRepository = animalRepository;
     }
 

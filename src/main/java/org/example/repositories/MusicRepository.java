@@ -54,10 +54,10 @@ public class MusicRepository implements IRepository<Music> {
 
     public MusicRepository() {
         db = new ArrayList<>();
-        save(new Music("Слава кпсс", "Слава кпсс", 180));
-        save(new Music("Шёлк", "Ваня Дмитриенко", 200));
-        save(new Music("Бассейн", "Noize MC", 210));
-        save(new Music("На луне", "Серега Пират", 170));
-        save(new Music("3 6 9", "FORTUNA 812", 150));
+        save(new Music("Слава кпсс", "Слава кпсс", 180, 1));
+        save(new Music("Шёлк", "Ваня Дмитриенко", 200, 2));
+        save(new Music("Бассейн", "Noize MC", 210, 3));
+        save(new Music("На луне", "Серега Пират", 170, 4));
+        save(new Music("3 6 9", "FORTUNA 812", 150, 5));
     }
 }

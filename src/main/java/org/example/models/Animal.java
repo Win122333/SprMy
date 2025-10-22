@@ -2,6 +2,7 @@ package org.example.models;
 
 public class Animal implements IModel {
     private int ID;
+    private int ID_owner;
     private String scienceName;
     private long population;
     private int avgLife;
@@ -16,6 +17,14 @@ public class Animal implements IModel {
 
     public void setScienceName(String scienceName) {
         this.scienceName = scienceName;
+    }
+
+    public void setID_owner(int ID_owner) {
+        this.ID_owner = ID_owner;
+    }
+
+    public int getID_owner() {
+        return ID_owner;
     }
 
     public void setPopulation(long population) {
@@ -38,10 +47,11 @@ public class Animal implements IModel {
         return avgLife;
     }
 
-    public Animal(String scienceName, long population, int avgLife) {
+    public Animal(String scienceName, long population, int avgLife, int ID_owner) {
         this.scienceName = scienceName;
         this.population = population;
         this.avgLife = avgLife;
+        this.ID_owner = ID_owner;
     }
 
     @Override
@@ -51,6 +61,6 @@ public class Animal implements IModel {
                 ", scienceName='" + scienceName + '\'' +
                 ", population=" + population +
                 ", avgLife=" + avgLife +
-                '}';
+                "', id_owner='" + ID_owner + "'}";
     }
 }
