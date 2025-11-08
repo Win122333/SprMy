@@ -32,8 +32,27 @@ public class MusicRepositoryJDBC  implements IRepository<Music> {
 
     @Override
     public Music findById(int id) {
-//
-        return null;
+        String sql = "SELECT * FROM music WHERE ID=?;";
+        try (var st = connection.prepareStatement(sql)) {
+            List<Animal> lst = new ArrayList<>();
+            st.setInt(1, id);
+            var res = st.executeQuery();
+            if (res.next()) {
+                Music m = new Music(
+                        res.getString("title"),
+                        res.getString("author"),
+                        res.getInt("duration"),
+                        res.getInt("id_owner")
+                );
+                m.setID(res.getInt("id"));
+                return m;
+            }
+            throw new RuntimeException("нет такого id");
+
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Override
@@ -91,9 +110,10 @@ public class MusicRepositoryJDBC  implements IRepository<Music> {
 
     public MusicRepositoryJDBC() {
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, pswrd);
         }
-        catch (SQLException e) {
+        catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e.getMessage());
         }
     }

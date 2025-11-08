@@ -6,8 +6,6 @@ import org.example.repositories.AnimalRepositoryJDBC;
 import org.example.controllers.AnimalController;
 import org.example.controllers.MusicController;
 import org.example.controllers.PeopleController;
-import org.example.repositories.MusicRepository;
-import org.example.repositories.PeopleRepository;
 import org.example.services.AnimalService;
 import org.example.services.InputService;
 import org.example.services.MusicService;
@@ -35,9 +33,5 @@ public class Main {
 
 
         console.start();
-
-//        DealRepository dr = new DealRepository();
-//        dr.showAll();
-
     }
 }

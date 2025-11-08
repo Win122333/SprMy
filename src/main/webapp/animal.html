@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление животными</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .nav {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        button {
+            padding: 12px 24px;
+            background: #fff;
+            color: #667eea;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-success {
+            background: #6bcf7f;
+            color: white;
+        }
+
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🐾 Управление животными</h1>
+
+    <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/music">Музыка</a>
+        <a href="/people">Люди</a>
+    </div>
+
+    <!-- Секция создания -->
+    <div class="section">
+        <h2>➕ Создать животное</h2>
+        <div class="form-group">
+            <label for="createName">Научное название:</label>
+            <input type="text" id="createName" placeholder="Введите название">
+        </div>
+        <div class="form-group">
+            <label for="createPopulation">Популяция:</label>
+            <input type="number" id="createPopulation" placeholder="Введите популяцию">
+        </div>
+        <div class="form-group">
+            <label for="createLife">Средняя продолжительность жизни:</label>
+            <input type="number" id="createLife" placeholder="Введите срок жизни">
+        </div>
+        <div class="form-group">
+            <label for="createOwner">ID владельца:</label>
+            <input type="number" id="createOwner" placeholder="Введите ID владельца">
+        </div>
+        <button class="btn-success" onclick="createAnimal()">Создать животное</button>
+    </div>
+
+    <!-- Секция поиска -->
+    <div class="section">
+        <h2>🔍 Найти животное</h2>
+        <div class="form-group">
+            <label for="searchId">ID животного:</label>
+            <input type="number" id="searchId" placeholder="Введите ID">
+        </div>
+        <button onclick="getAnimalById()">Найти по ID</button>
+        <button onclick="getAllAnimals()">Показать всех</button>
+    </div>
+
+    <!-- Секция удаления -->
+    <div class="section">
+        <h2>🗑️ Удалить животное</h2>
+        <div class="form-group">
+            <label for="deleteId">ID животного:</label>
+            <input type="number" id="deleteId" placeholder="Введите ID для удаления">
+        </div>
+        <button class="btn-danger" onclick="deleteAnimal()">Удалить животное</button>
+    </div>
+
+    <!-- Результаты -->
+    <div class="section">
+        <h2>📊 Результаты</h2>
+        <div id="results" class="results">
+            Результаты операций будут отображаться здесь...
+        </div>
+    </div>
+</div>
+
+<script>
+    async function createAnimal() {
+        const name = document.getElementById('createName').value;
+        const population = document.getElementById('createPopulation').value;
+        const life = document.getElementById('createLife').value;
+        const owner = document.getElementById('createOwner').value;
+
+        if (!name || !population || !life || !owner) {
+            alert('Заполните все поля!');
+            return;
+        }
+
+        try {
+            const response = await fetch('/animal/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    scienceName: name,
+                    population: parseInt(population),
+                    avgLife: parseInt(life),
+                    id_owner: parseInt(owner)
+                })
+            });
+
+            if (response.ok) {
+                document.getElementById('results').innerHTML =
+                    '<div style="color: green">✅ Животное успешно создано!</div>';
+                clearForm();
+            } else {
+                const error = await response.text();
+                document.getElementById('results').innerHTML =
+                    `<div style="color: red">❌ Ошибка: ${error}</div>`;
+            }
+        } catch (error) {
+            document.getElementById('results').innerHTML =
+                `<div style="color: red">❌ Ошибка: ${error}</div>`;
+        }
+    }
+
+    async function getAnimalById() {
+        const id = document.getElementById('searchId').value;
+        if (!id) {
+            alert('Введите ID');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/animal/${id}`);
+            if (response.ok) {
+                const animal = await response.json();
+                document.getElementById('results').innerHTML =
+                    `<pre>${JSON.stringify(animal, null, 2)}</pre>`;
+            } else {
+                document.getElementById('results').innerHTML =
+                    '<div style="color: red">❌ Животное не найдено</div>';
+            }
+        } catch (error) {
+            document.getElementById('results').innerHTML =
+                `<div style="color: red">❌ Ошибка: ${error}</div>`;
+        }
+    }
+
+    async function getAllAnimals() {
+        try {
+            const response = await fetch('/animal/');
+            const animals = await response.json();
+            document.getElementById('results').innerHTML =
+                `<pre>${JSON.stringify(animals, null, 2)}</pre>`;
+        } catch (error) {
+            document.getElementById('results').innerHTML =
+                `<div style="color: red">❌ Ошибка: ${error}</div>`;
+        }
+    }
+
+    async function deleteAnimal() {
+        const id = document.getElementById('deleteId').value;
+        if (!id) {
+            alert('Введите ID');
+            return;
+        }
+
+        if (!confirm(`Удалить животное с ID ${id}?`)) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`/animal/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                document.getElementById('results').innerHTML =
+                    '<div style="color: green">✅ Животное успешно удалено!</div>';
+            } else {
+                document.getElementById('results').innerHTML =
+                    '<div style="color: red">❌ Ошибка при удалении</div>';
+            }
+        } catch (error) {
+            document.getElementById('results').innerHTML =
+                `<div style="color: red">❌ Ошибка: ${error}</div>`;
+        }
+    }
+
+    function clearForm() {
+        document.getElementById('createName').value = '';
+        document.getElementById('createPopulation').value = '';
+        document.getElementById('createLife').value = '';
+        document.getElementById('createOwner').value = '';
+    }
+</script>
+</body>
+</html>

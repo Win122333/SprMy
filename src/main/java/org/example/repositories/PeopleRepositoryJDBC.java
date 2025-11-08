@@ -111,9 +111,10 @@ public class PeopleRepositoryJDBC implements IRepository<People> {
 
     public PeopleRepositoryJDBC() {
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, pswrd);
         }
-        catch (SQLException e) {
+        catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e.getMessage());
         }
     }

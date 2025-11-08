@@ -110,9 +110,10 @@ public class AnimalRepositoryJDBC implements IRepository<Animal> {
 
     public AnimalRepositoryJDBC() {
         try {
+            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, pswrd);
         }
-        catch (SQLException e) {
+        catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e.getMessage());
         }
     }
